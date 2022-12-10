@@ -1,0 +1,67 @@
+{
+	"info": {
+		"_postman_id": "5af0ccb9-c9b7-44d4-8e2f-44abe746f35a",
+		"name": "Cloudshock.Domain.Service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19986042"
+	},
+	"item": [
+		{
+			"name": "Sample.Api - Racetrack",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-session-id",
+						"value": "{{session-id}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://{{hostname}}/Racetrack",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"Racetrack"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sample.Api - Racetrack",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-session-id",
+						"value": "{{session-id}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{hostname}}/Racetrack",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"Racetrack"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

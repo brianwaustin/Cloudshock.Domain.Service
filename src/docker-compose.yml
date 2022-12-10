@@ -1,0 +1,31 @@
+version: '3'
+services:  
+  web:
+    build: Cloudshock.Sample.Api
+    image: cloudshock-sample-api
+    container_name: domain-sample-api
+    hostname: domain-sampleapi
+    command: dotnet run Sample.Api.dll
+    ports:
+     - "8080:80"
+    volumes:
+     - ./web:/code # modified here to take into account the new app path
+    environment:
+     - DATADOG_HOST=datadog # used by the web app to initialize the Datadog library
+  datadog:
+    build: Datadog-Sidecar
+    image: datadog-sidecar
+    container_name: domain-logging-datadog
+    hostname: domain-logging-datadog
+    links:
+      - web # ensures that the web app can send metrics
+    environment:
+     - DD_API_KEY=
+     - DD_LOGS_CONFIG_CONTAINER_COLLECT_ALL=true
+     - DD_LOGS_ENABLED=true
+     - DD_CONTAINER_EXCLUDE_LOGS="name:datadog-agent"
+    volumes:
+     - /var/run/docker.sock:/var/run/docker.sock:ro
+     - /proc/:/host/proc/:ro
+     - /opt/datadog-agent/run:/opt/datadog-agent/run:rw
+     - /sys/fs/cgroup/:/host/sys/fs/cgroup:ro
